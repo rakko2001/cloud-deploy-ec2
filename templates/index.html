@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mural da Turma na Nuvem</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <p class="tag">Computação em Nuvem • Python • EC2</p>
+      <h1>Mural da Turma na Nuvem 🚀</h1>
+      <p>Esta aplicação Flask está rodando em uma instância Amazon EC2 e salva os dados localmente em SQLite.</p>
+    </section>
+
+    <section class="card">
+      <h2>Deixe sua mensagem</h2>
+      <form method="post">
+        <label>Nome
+          <input name="nome" maxlength="80" placeholder="Ex.: Ana" required>
+        </label>
+        <label>Como você está hoje?
+          <select name="sentimento" required>
+            <option value="Animado(a)">Animado(a)</option>
+            <option value="Confuso(a), mas seguindo">Confuso(a), mas seguindo</option>
+            <option value="Pronto(a) para o deploy">Pronto(a) para o deploy</option>
+            <option value="Com medo do Security Group">Com medo do Security Group</option>
+          </select>
+        </label>
+        <label>Mensagem
+          <textarea name="mensagem" maxlength="280" rows="4" placeholder="Escreva algo para aparecer no mural..." required></textarea>
+        </label>
+        <button type="submit">Publicar no mural</button>
+      </form>
+    </section>
+
+    <section class="mural">
+      <h2>Mensagens recentes</h2>
+      {% if mensagens %}
+        <div class="grid">
+          {% for item in mensagens %}
+            <article class="post">
+              <strong>{{ item.nome }}</strong>
+              <span>{{ item.sentimento }}</span>
+              <p>{{ item.mensagem }}</p>
+              <small>{{ item.criado_em }}</small>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty">Ainda não há mensagens. Publique a primeira!</p>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

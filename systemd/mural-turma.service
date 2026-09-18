@@ -1,0 +1,13 @@
+[Unit]
+Description=Mural da Turma Flask app
+After=network.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/home/ec2-user/SEU_REPOSITORIO
+Environment="PORT=8000"
+ExecStart=/home/ec2-user/SEU_REPOSITORIO/venv/bin/gunicorn --workers 2 --bind 0.0.0.0:8000 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
