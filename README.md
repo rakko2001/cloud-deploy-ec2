@@ -46,5 +46,3 @@ Lembre-se de liberar a porta TCP 5000 no Security Group da instância.
 source venv/bin/activate
 gunicorn --bind 0.0.0.0:8000 app:app
 ```
-
-Nesse caso, libere a porta TCP 8000 no Security Group.
